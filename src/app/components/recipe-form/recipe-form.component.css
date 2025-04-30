@@ -1,0 +1,12 @@
+.recipe-form {
+  border-radius: 8px;
+  border: 1px solid #e6d5b8;
+}
+
+.text-primary {
+  color: #a83c32 !important;
+}
+
+.d-flex {
+  margin-top: 1.5rem;
+}

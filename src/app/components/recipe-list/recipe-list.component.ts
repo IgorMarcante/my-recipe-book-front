@@ -14,6 +14,7 @@ import { Recipe } from '../../models/recipe';
 })
 export class RecipeListComponent implements OnInit {
   recipes: Recipe[] = [];
+  filteredRecipes: Recipe[] = [];
   filter: string = '';
 
   constructor(private recipeService: RecipeService) {}
@@ -25,16 +26,19 @@ export class RecipeListComponent implements OnInit {
   loadRecipes(): void {
     this.recipeService.list().subscribe((data) => {
       this.recipes = data;
+      this.filteredRecipes = data;
     });
   }
 
   filterRecipes(): void {
-    // Implementar filtro depois
+    this.filteredRecipes = this.recipes.filter(recipe =>
+      recipe.name.toLowerCase().includes(this.filter.toLowerCase())
+    );
   }
 
   delete(id: number): void {
-    this.recipeService.delete(id).subscribe(() => {
-      this.loadRecipes();
-    });
+      this.recipeService.delete(id).subscribe(() => {
+        this.loadRecipes();
+      });
   }
 }

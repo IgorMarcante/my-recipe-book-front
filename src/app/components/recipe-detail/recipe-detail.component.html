@@ -1,4 +1,27 @@
-<div class="recipe-detail">
-  <h2>Detalhes da Receita</h2>
-  <p>Detalhes da receita serão exibidos aqui.</p>
+<div class="recipe-detail card shadow-sm p-4 bg-white" *ngIf="recipe">
+  <h2 class="text-primary"><i class="bi bi-egg-fried me-2"></i>{{ recipe.name }}</h2>
+  <p><strong><i class="bi bi-clock me-2"></i>Tempo de Preparo:</strong> {{ recipe.prepTime || 'N/A' }} minutos</p>
+  <p><strong><i class="bi bi-people me-2"></i>Rendimento:</strong> {{ recipe.yield || 'N/A' }}</p>
+  <p><strong><i class="bi bi-tag me-2"></i>Categoria:</strong> {{ recipe.category || 'N/A' }}</p>
+  <h3 class="text-primary"><i class="bi bi-basket me-2"></i>Ingredientes</h3>
+  <ul class="list-group mb-3">
+    <li class="list-group-item" *ngFor="let ingredient of recipe.ingredients">
+      {{ ingredient.quantity }} {{ ingredient.unit }} de {{ ingredient.name }}
+    </li>
+  </ul>
+  <h3 class="text-primary"><i class="bi bi-list-ol me-2"></i>Passos de Preparo</h3>
+  <ol class="list-group list-group-numbered">
+    <li class="list-group-item" *ngFor="let step of recipe.prepSteps">{{ step.description }}</li>
+  </ol>
+  <div class="d-flex gap-2">
+    <a *ngIf="recipe.id !== undefined" [routerLink]="['/edit-recipe', recipe.id]" class="btn btn-primary">
+      <i class="bi bi-pencil-square me-2"></i>Editar
+    </a>
+    <button type="button" class="btn btn-outline-secondary" (click)="goBack()">
+      <i class="bi bi-arrow-left me-2"></i>Voltar
+    </button>
+  </div>
+</div>
+<div class="card shadow-sm p-4 bg-white" *ngIf="!recipe">
+  <p class="alert alert-warning">Receita não encontrada.</p>
 </div>

@@ -1,14 +1,23 @@
 .recipe-list {
-  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid #e6d5b8;
 }
-ul {
-  list-style: none;
-  padding: 0;
+
+.list-group-item:hover {
+  background-color: #f8f1eb;
+  transition: background-color 0.3s;
 }
-li {
-  margin: 10px 0;
+
+.text-primary {
+  color: #a83c32 !important;
 }
-input {
-  padding: 5px;
-  margin-bottom: 10px;
+
+.btn-primary {
+  background-color: #a83c32;
+  border-color: #a83c32;
+}
+
+.btn-primary:hover {
+  background-color: #8b2f27;
+  border-color: #8b2f27;
 }

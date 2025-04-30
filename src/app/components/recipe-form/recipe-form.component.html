@@ -1,4 +1,77 @@
-<div class="recipe-form">
-  <h2>{{ editMode ? 'Editar Receita' : 'Nova Receita' }}</h2>
-  <p>Formulário de receita será implementado aqui.</p>
+<div class="recipe-form card shadow-sm p-4 bg-white">
+  <h2 class="mb-4 text-primary"><i class="bi bi-pencil-square me-2"></i>{{ editMode ? 'Editar Receita' : 'Nova Receita' }}</h2>
+  <form [formGroup]="recipeForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label class="form-label">Nome:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-egg"></i></span>
+        <input class="form-control" formControlName="name" required>
+      </div>
+      <div *ngIf="recipeForm.get('name')?.hasError('required') && recipeForm.get('name')?.touched" class="text-danger">
+        Nome é obrigatório
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Tempo de Preparo (min):</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-clock"></i></span>
+        <input type="number" class="form-control" formControlName="prepTime">
+      </div>
+      <div *ngIf="recipeForm.get('prepTime')?.hasError('min') && recipeForm.get('prepTime')?.touched" class="text-danger">
+        Tempo deve ser positivo
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Rendimento:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-people"></i></span>
+        <input class="form-control" formControlName="yield">
+      </div>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Categoria:</label>
+      <div class="input-group">
+        <span class="input-group-text"><i class="bi bi-tag"></i></span>
+        <input class="form-control" formControlName="category">
+      </div>
+    </div>
+
+    <h3 class="text-primary"><i class="bi bi-basket me-2"></i>Ingredientes</h3>
+    <div formArrayName="ingredients" class="mb-3">
+      <div *ngFor="let ingredient of ingredients.controls; let i=index" [formGroupName]="i" class="d-flex mb-2">
+        <input class="form-control me-2" formControlName="name" placeholder="Nome" required>
+        <input type="number" class="form-control me-2" formControlName="quantity" placeholder="Quantidade" required>
+        <input class="form-control me-2" formControlName="unit" placeholder="Unidade" required>
+        <button type="button" class="btn btn-outline-danger" (click)="removeIngredient(i)">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-outline-secondary mb-3" (click)="addIngredient()">
+      <i class="bi bi-plus-circle me-2"></i>Adicionar Ingrediente
+    </button>
+
+    <h3 class="text-primary"><i class="bi bi-list-ol me-2"></i>Passos de Preparo</h3>
+    <div formArrayName="prepSteps" class="mb-3">
+      <div *ngFor="let step of prepSteps.controls; let i=index" [formGroupName]="i" class="d-flex mb-2">
+        <input type="number" class="form-control me-2" formControlName="stepOrder" placeholder="Ordem" required>
+        <input class="form-control me-2" formControlName="description" placeholder="Descrição" required>
+        <button type="button" class="btn btn-outline-danger" (click)="removePrepStep(i)">
+          <i class="bi bi-trash"></i>
+        </button>
+      </div>
+    </div>
+    <button type="button" class="btn btn-outline-secondary mb-3" (click)="addPrepStep()">
+      <i class="bi bi-plus-circle me-2"></i>Adicionar Passo
+    </button>
+
+    <div class="d-flex gap-2">
+      <button type="submit" class="btn btn-primary" [disabled]="recipeForm.invalid">
+        <i class="bi bi-save me-2"></i>Salvar
+      </button>
+      <button type="button" class="btn btn-outline-secondary" (click)="goBack()">
+        <i class="bi bi-arrow-left me-2"></i>Voltar
+      </button>
+    </div>
+  </form>
 </div>
