@@ -37,8 +37,10 @@ export class RecipeListComponent implements OnInit {
   }
 
   delete(id: number): void {
+    if (confirm('Tem certeza que deseja excluir esta receita?')) {
       this.recipeService.delete(id).subscribe(() => {
         this.loadRecipes();
       });
+    }
   }
 }
