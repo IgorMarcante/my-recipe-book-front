@@ -32,7 +32,10 @@
       <label class="form-label">Categoria:</label>
       <div class="input-group">
         <span class="input-group-text"><i class="bi bi-tag"></i></span>
-        <input class="form-control" formControlName="category">
+        <select class="form-select" formControlName="category">
+          <option value="">Selecione uma categoria</option>
+          <option *ngFor="let category of categoryOptions" [value]="category">{{ category }}</option>
+        </select>
       </div>
     </div>
 
@@ -41,7 +44,10 @@
       <div *ngFor="let ingredient of ingredients.controls; let i=index" [formGroupName]="i" class="d-flex mb-2">
         <input class="form-control me-2" formControlName="name" placeholder="Nome" required>
         <input type="number" class="form-control me-2" formControlName="quantity" placeholder="Quantidade" required>
-        <input class="form-control me-2" formControlName="unit" placeholder="Unidade" required>
+        <select class="form-select" formControlName="unit" required>
+          <option value="" disabled>Selecione uma unidade</option>
+          <option *ngFor="let unit of unitOptions" [value]="unit">{{ unit }}</option>
+        </select>
         <button type="button" class="btn btn-outline-danger" (click)="removeIngredient(i)">
           <i class="bi bi-trash"></i>
         </button>
