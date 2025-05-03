@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
-import { RouterLink, Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../models/recipe';
 
 @Component({
   selector: 'app-recipe-form',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './recipe-form.component.html',
   styleUrls: ['./recipe-form.component.css']
 })
@@ -17,22 +17,22 @@ export class RecipeFormComponent implements OnInit {
   editMode = false;
   // Lista de unidades de medida
   unitOptions: string[] = [
-    'xícara',
-    'colher de sopa',
-    'colher de chá',
-    'gramas',
-    'quilogramas',
-    'mililitros',
-    'litros',
-    'unidade',
-    'pitada'
+    'caixa(s)',
+    'colher(es) de chá',
+    'colher(es) de sopa',
+    'grama(s)',
+    'litro(s)',
+    'mililitro(s)',
+    'pitada(s)',
+    'quilograma(s)',
+    'unidade(s)',
+    'xícara(s)'
   ];
 
   // Lista de categorias de receitas
   categoryOptions: string[] = [
     'Acompanhamento',
     'Bebida',
-    'Café da Manhã',
     'Carne',
     'Doce',
     'Entrada',
@@ -42,8 +42,7 @@ export class RecipeFormComponent implements OnInit {
     'Prato Principal',
     'Salgado',
     'Sobremesa',
-    'Sopa e Caldo',
-    'Vegetariano'
+    'Sopa e Caldo'
   ].sort();
 
   constructor(
@@ -78,7 +77,7 @@ export class RecipeFormComponent implements OnInit {
           this.ingredients.push(this.fb.group({
             id: [ingredient.id],
             name: [ingredient.name, Validators.required],
-            quantity: [ingredient.quantity, [Validators.required, Validators.min(0)]],
+            quantity: [ingredient.quantity, [Validators.required]],
             unit: [ingredient.unit, Validators.required]
           }));
         });

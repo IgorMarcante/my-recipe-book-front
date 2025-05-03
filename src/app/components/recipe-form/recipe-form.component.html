@@ -43,7 +43,7 @@
     <div formArrayName="ingredients" class="mb-3">
       <div *ngFor="let ingredient of ingredients.controls; let i=index" [formGroupName]="i" class="d-flex mb-2">
         <input class="form-control me-2" formControlName="name" placeholder="Nome" required>
-        <input type="number" class="form-control me-2" formControlName="quantity" placeholder="Quantidade" required>
+        <input class="form-control me-2" formControlName="quantity" placeholder="Quantidade" required>
         <select class="form-select" formControlName="unit" required>
           <option value="" disabled>Selecione uma unidade</option>
           <option *ngFor="let unit of unitOptions" [value]="unit">{{ unit }}</option>
