@@ -1,16 +1,15 @@
+<!-- src/app/app.component.html -->
+<app-loading [isLoading]="isLoading | async"></app-loading>
+
 <header class="bg-light py-3 shadow-sm">
   <div class="container">
     <div class="d-flex align-items-center">
       <h1 class="mb-0 text-primary"><i class="bi bi-journal-bookmark-fill"></i> Livro de Receitas</h1>
-      <!-- <nav class="ms-auto">
-        <a routerLink="/" class="btn btn-outline-primary me-2">Receitas</a>
-        <a routerLink="/new-recipe" class="btn btn-primary">Nova Receita</a>
-      </nav> -->
     </div>
   </div>
 </header>
 
-<main class="container py-4 flex-grow-1">
+<main class="container py-4 flex-grow-1 main-content">
   <router-outlet></router-outlet>
 </main>
 
