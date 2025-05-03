@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../models/recipe';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-recipe-list',
@@ -17,7 +18,7 @@ export class RecipeListComponent implements OnInit {
   filteredRecipes: Recipe[] = [];
   filter: string = '';
 
-  constructor(private recipeService: RecipeService) {}
+  constructor(private recipeService: RecipeService, private notificationService: NotificationService) { }
 
   ngOnInit(): void {
     this.loadRecipes();
@@ -39,6 +40,7 @@ export class RecipeListComponent implements OnInit {
   delete(id: number): void {
     if (confirm('Tem certeza que deseja excluir esta receita?')) {
       this.recipeService.delete(id).subscribe(() => {
+        this.notificationService.show('Receita excluída com sucesso!', 'success');
         this.loadRecipes();
       });
     }

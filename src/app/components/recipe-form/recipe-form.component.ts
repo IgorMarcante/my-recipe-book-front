@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormGroup, FormBuilder, FormArray, Validators } fr
 import { Router, ActivatedRoute } from '@angular/router';
 import { RecipeService } from '../../services/recipe.service';
 import { Recipe } from '../../models/recipe';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-recipe-form',
@@ -49,7 +50,9 @@ export class RecipeFormComponent implements OnInit {
     private fb: FormBuilder,
     private recipeService: RecipeService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private notificationService: NotificationService
+
   ) {
     this.recipeForm = this.fb.group({
       name: ['', Validators.required],
@@ -131,21 +134,25 @@ export class RecipeFormComponent implements OnInit {
         const id = Number(this.route.snapshot.paramMap.get('id'));
         this.recipeService.update(id, recipe).subscribe((updatedRecipe) => {
           console.log('Receita atualizada:', updatedRecipe);
+          this.notificationService.show('Receita atualizada com sucesso!', 'success');
           this.router.navigate(['/']);
         });
       } else {
         this.recipeService.create(recipe).subscribe({
           next: (newRecipe) => {
             console.log('Receita adicionada:', newRecipe);
+            this.notificationService.show('Receita salva com sucesso!', 'success');
             this.router.navigate(['/']);
           },
           error: (error) => {
+            this.notificationService.show('Erro ao salvar receita.', 'error');
             console.error('Erro ao adicionar receita:', error);
           }
         });
       }
     } else {
       console.log('Formulário inválido:', this.recipeForm.errors);
+      this.notificationService.show('Formulário inválido.', 'error');
     }
   }
   goBack(): void {
