@@ -8,6 +8,7 @@ import { Recipe } from '../models/recipe';
 })
 export class RecipeService {
   private apiUrl = 'https://my-recipe-book-back-production.up.railway.app/api/recipes';
+  // private apiUrl = 'http://localhost:8080/api/recipes';
 
   private recipes: Recipe[] = [];
 
