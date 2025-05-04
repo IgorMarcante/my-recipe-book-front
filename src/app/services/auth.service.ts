@@ -10,10 +10,10 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(email: string, password: string): Observable<{ jwt: string }> {
-    return this.http.post<{ jwt: string }>(`${this.apiUrl}/login`, { email, password })
+  login(email: string, password: string): Observable<{ token: string }> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, { email, password })
       .pipe(
-        tap(response => localStorage.setItem('token', response.jwt))
+        tap(response => localStorage.setItem('token', response.token))
       );
   }
 

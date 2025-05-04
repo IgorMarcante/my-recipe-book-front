@@ -28,6 +28,7 @@ export class LoginComponent {
 
   onSubmit(): void {
     if (this.loginForm.valid) {
+      console.log("Formulario valido, chamando")
       const { email, password } = this.loginForm.value;
       this.authService.login(email!, password!).subscribe({
         next: () => this.router.navigate(['/recipes']),

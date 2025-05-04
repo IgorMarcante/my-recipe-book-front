@@ -1,10 +1,19 @@
 <app-notification></app-notification>
 <app-loading [isLoading]="isLoading | async"></app-loading>
 
-<header class="bg-light py-3 shadow-sm">
+<header *ngIf="isAuthenticated()" class="bg-light py-3 shadow-sm">
   <div class="container">
-    <div class="d-flex align-items-center">
-      <h1 class="mb-0 text-primary"><i class="bi bi-journal-bookmark-fill"></i> Livro de Receitas</h1>
+    <div class="d-flex align-items-center justify-content-between">
+      <h1 class="mb-0 text-primary">
+        <i class="bi bi-journal-bookmark-fill"></i> Livro de Receitas
+      </h1>
+      <nav>
+        <ul class="nav">
+          <li class="nav-item" *ngIf="isAuthenticated()">
+            <a class="nav-link" href="" (click)="logout()">Sair</a>
+          </li>
+        </ul>
+      </nav>
     </div>
   </div>
 </header>
@@ -13,7 +22,7 @@
   <router-outlet></router-outlet>
 </main>
 
-<footer class="bg-light py-3">
+<footer *ngIf="isAuthenticated()" class="bg-light py-3">
   <div class="container text-center">
     <p class="mb-0 text-muted">Livro de Receitas Pessoal © 2025</p>
   </div>

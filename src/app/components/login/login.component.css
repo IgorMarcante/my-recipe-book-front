@@ -1,29 +1,89 @@
-.login {
-  max-width: 400px;
-  margin: 2rem auto;
-  border-radius: 8px;
-  border: 1px solid #e6d5b8;
+/* Container para centralizar e ocupar a tela inteira */
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f8f9fa; /* Fundo bege claro */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), url('https://www.transparenttextures.com/patterns/paper-fibers.png'); /* Textura sutil de papel */
+  background-size: cover;
 }
 
+/* Card do formulário */
+.login {
+  width: 100%;
+  max-width: 450px; /* Aumentado de 400px para mais presença */
+  border: none; /* Removido a borda para minimalismo */
+  border-radius: 12px; /* Bordas mais suaves */
+  background-color: #ffffff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1); /* Sombra suave e moderna */
+}
+
+/* Cores do tema */
 .text-primary {
-  color: #a83c32 !important;
+  color: #a83c32 !important; /* Mantido o vermelho terroso */
 }
 
 .btn-primary {
   background-color: #a83c32;
   border-color: #a83c32;
+  font-weight: 500;
+  padding: 12px;
+  transition: all 0.3s ease; /* Animação suave */
 }
 
 .btn-primary:hover {
   background-color: #8b2f27;
   border-color: #8b2f27;
+  transform: translateY(-2px); /* Efeito de elevação */
 }
 
+.btn-primary:disabled {
+  background-color: #c77b74;
+  border-color: #c77b74;
+  cursor: not-allowed;
+}
+
+/* Estilização dos inputs */
 .form-control {
-  border-radius: 0 5px 5px 0;
+  border-radius: 0 8px 8px 0; /* Bordas arredondadas à direita */
+  font-size: 1rem;
+  padding: 10px;
 }
 
 .input-group-text {
-  background-color: #f8f1eb;
-  border-radius: 5px 0 0 5px;
+  background-color: #f8f1eb; /* Bege claro, mantido */
+  border: none;
+  border-radius: 8px 0 0 8px;
+  color: #4a4a4a;
+}
+
+/* Feedback de validação */
+.invalid-feedback {
+  font-size: 0.875rem;
+  color: #dc3545;
+}
+
+/* Links */
+a.text-primary {
+  color: #a83c32;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+a.text-primary:hover {
+  color: #8b2f27;
+  text-decoration: underline;
+}
+
+/* Tipografia */
+h2 {
+  font-family: 'Lora', serif; /* Fonte elegante para o tema de receitas */
+  font-size: 1.75rem;
+  font-weight: 600;
+}
+
+.form-label {
+  color: #4a4a4a;
+  font-size: 0.95rem;
 }
