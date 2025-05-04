@@ -1,0 +1,29 @@
+.login {
+  max-width: 400px;
+  margin: 2rem auto;
+  border-radius: 8px;
+  border: 1px solid #e6d5b8;
+}
+
+.text-primary {
+  color: #a83c32 !important;
+}
+
+.btn-primary {
+  background-color: #a83c32;
+  border-color: #a83c32;
+}
+
+.btn-primary:hover {
+  background-color: #8b2f27;
+  border-color: #8b2f27;
+}
+
+.form-control {
+  border-radius: 0 5px 5px 0;
+}
+
+.input-group-text {
+  background-color: #f8f1eb;
+  border-radius: 5px 0 0 5px;
+}
